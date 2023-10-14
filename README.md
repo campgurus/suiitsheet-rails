@@ -24,4 +24,7 @@ Things you may want to cover:
 * ...
 
 Resources:
-devise setup: https://www.youtube.com/watch?v=wVNQwrALp1A
+devise setup: 
+- https://www.youtube.com/watch?v=wVNQwrALp1A
+- https://github.com/DakotaLMartinez/rails-devise-jwt-tutorial
+- https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/

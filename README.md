@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Resources:
+devise setup: https://www.youtube.com/watch?v=wVNQwrALp1A

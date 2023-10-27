@@ -1,9 +1,10 @@
 class AnswersController < ApplicationController
+  before_action :get_question
   before_action :set_answer, only: %i[ show update destroy ]
 
   # GET /answers
   def index
-    @answers = Answer.all
+    @answers = @question.answers
 
     render json: @answers
   end
@@ -13,12 +14,16 @@ class AnswersController < ApplicationController
     render json: @answer
   end
 
+  def new
+    @answer = @question.answers.build
+  end
+
   # POST /answers
   def create
-    @answer = Answer.new(answer_params)
+    @answer = @question.answers.build(answer_params)
 
     if @answer.save
-      render json: @answer, status: :created, location: @answer
+      render json: @answer, status: :created
     else
       render json: @answer.errors, status: :unprocessable_entity
     end
@@ -39,13 +44,18 @@ class AnswersController < ApplicationController
   end
 
   private
+    def get_question
+      @question = Question.find(params[:question_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
-      @answer = Answer.find(params[:id])
+      @answer = @question.answers.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def answer_params
       params.require(:answer).permit(:body, :question_id)
     end
+
 end

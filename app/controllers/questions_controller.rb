@@ -3,7 +3,11 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   def index
-    @questions = Question.all
+    if params[:search]
+      @questions = Question.search_question("person")
+    else
+      @questions = Question.all
+    end
 
     render json: @questions, include: [:answers]
   end

@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   def index
     if params[:search]
-      @questions = Question.search_question("person")
+      @questions = Question.search_question(params[:search])
     else
       @questions = Question.all
     end

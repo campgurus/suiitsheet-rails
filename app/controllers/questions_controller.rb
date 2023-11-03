@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[ show update destroy ]
+  before_action :authenticate_user!, only: %i[create update destroy]
 
   # GET /questions
   def index
@@ -19,7 +20,7 @@ class QuestionsController < ApplicationController
 
   # POST /questions
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
 
     if @question.save
       render json: @question, status: :created, location: @question

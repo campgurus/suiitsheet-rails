@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   before_action :get_question
   before_action :set_answer, only: %i[ show update destroy ]
+  before_action :authenticate_user!, only: %i[create update destroy]
 
   # GET /answers
   def index
@@ -21,6 +22,7 @@ class AnswersController < ApplicationController
   # POST /answers
   def create
     @answer = @question.answers.build(answer_params)
+    @answer.user_id = current_user.id
 
     if @answer.save
       render json: @answer, status: :created

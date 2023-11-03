@@ -9,6 +9,7 @@ class Question < ApplicationRecord
   validates :body, presence: true, uniqueness: true
 
   has_many :answers, dependent: :destroy
+  belongs_to :user
 
   accepts_nested_attributes_for  :answers, allow_destroy: true
 end

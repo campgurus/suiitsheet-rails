@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   def index
-    if params[:search]
+    if params[:search] && params[:search].strip.length > 0
       @questions = Question.search_question(params[:search])
     else
       @questions = Question.all

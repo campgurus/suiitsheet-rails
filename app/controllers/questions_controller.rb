@@ -9,8 +9,7 @@ class QuestionsController < ApplicationController
     else
       @questions = Question.all
     end
-
-    render json: @questions, include: [:answers]
+    render json: @questions.order(updated_at: :desc), include: [:answers]
   end
 
   # GET /questions/1
